@@ -77,5 +77,44 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            double m = 30;
+            int xc = pictureBox2.Width / 2;
+            int yc = pictureBox2.Height / 2;
+            int xe, ye;
+            double x, y;
+            double step = 0.005;
+
+            // ŠEIT ir tā svarīgā rinda — pareizā vietā:
+            Graphics G = pictureBox2.CreateGraphics();
+
+            G.Clear(Color.White);
+
+            Pen myPen = new Pen(Color.Silver);
+            G.DrawLine(myPen, 10, yc, 2 * xc - 10, yc);
+            G.DrawLine(myPen, xc, 10, xc, 2 * yc - 10);
+
+            myPen = new Pen(Color.Blue);
+            x = -Math.PI;
+
+            while (x < Math.PI)
+            {
+                try
+                {
+                    double a = x;
+                    y = a * a;
+
+                    xe = (int)(xc + m * x);
+                    ye = (int)(yc - m * y);
+                    G.DrawEllipse(myPen, xe, ye, 1, 1);
+                }
+                catch { }
+
+                x += step;
+            }
+        }
+
+
     }
 }
